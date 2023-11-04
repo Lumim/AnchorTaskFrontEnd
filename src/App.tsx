@@ -8,6 +8,7 @@ import { useAppDispatch } from "./app/hooks";
 import { setUser } from "./features/authSlice";
 import { PrivateRoute } from "./components/PrivateRoute";
 import Sales from "./pages/userPage/Sales";
+import Users from "./pages/userPage/Users";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -34,11 +35,19 @@ function App() {
           />
 
           <Route
-            path="/reg/dashboard"
+            path="/dashboard/sales"
             element={
               <PrivateRoute>
-                <Dashboard />
                 <Sales />
+
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard/users"
+            element={
+              <PrivateRoute>
+                <Users />
 
               </PrivateRoute>
             }

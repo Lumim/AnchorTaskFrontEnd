@@ -8,7 +8,7 @@ interface Props {
   }
 const SignUpButton = (props:Props) => {
   return (
-    <div className='pt-2 px-1 mx-2 flex bg-gray-200 rounded-lg'>{props.type=="google"?<Google/>:<Apple/>}SignUpButton {props.type}</div>
+    <div className='w-[14.5%] p-2 my-2 mx-2 flex bg-[#F0F5FA] rounded-lg btn-info cursor-pointer text-gray-400 text-base font-medium '>{props.type=="google"?<Google/>:<Apple/>}Sign up with {props.type=="google"?<div className="text-gray-400 text-base font-medium font-['Inter']">Google</div>:<>Apple Id</>}</div>
   )
 }
 

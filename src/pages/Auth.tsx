@@ -11,9 +11,8 @@ import { useAppDispatch } from "../app/hooks";
 import NavBar from "../components/NavBar";
 import SignUpButton from "../components/SignUpButton";
 import Headlines from "../components/Headlines";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Eye from "../assets/Eye";
-
 
 const initialState = {
   firstName: "",
@@ -52,15 +51,15 @@ const Auth = () => {
 
   const Navigate = useNavigate();
   const handleLogin = async () => {
-    if (username && password) {
-      await loginUser({ username, password });
+    if (email && password) {
+      await loginUser({ email, password });
     } else {
       toast.error("please fill up");
     }
   };
 
   const handleRegister = async () => {
-    if (username && password) {
+    if (email && password) {
       await registerUser({
         username,
         email,
@@ -74,7 +73,7 @@ const Auth = () => {
 
   const isEmailValid = (email: string) => {
     if (email.length === 0) return true;
-    // other checks here
+  //other check can be done
     return false;
   };
 
@@ -104,23 +103,24 @@ const Auth = () => {
   return (
     <section>
       <NavBar />
-      <div className="bg-white flex justify-center m-auto ">
-        <SignUpButton type="google" />
-        <SignUpButton type="apple" />
-      </div>
       <div className="flex justify-center m-auto">
         <Headlines type={showRegister} />
       </div>
+      <div className="bg-white flex justify-center m-auto my-5 ">
+        <SignUpButton type="google" />
+        <SignUpButton type="apple" />
+      </div>
+
       <div>
-        {showRegister ? (
+        {showRegister ? ( //SIGN IN
           <div className="relative h-screen">
             <div className="p-2">
               <input
-                type="text"
-                name="username"
-                id=""
-                className="input input-bordered w-full max-w-xs flex justify-center m-auto"
-                value={username}
+                type="email"
+                name="email"
+                id="signInUserName"
+                className="input w-[100%]  input-bordered max-w-md flex justify-center m-auto"
+                value={email}
                 onChange={handleChange}
               />
               {isEmailValid(email) && (
@@ -133,8 +133,8 @@ const Auth = () => {
               <input
                 type="text"
                 name="password"
-                id=""
-                className="input input-bordered w-full max-w-xs flex justify-center m-auto"
+                id="signPass"
+                className="input input-bordered w-full max-w-md flex justify-center m-auto"
                 onChange={handleChange}
                 value={password}
               />
@@ -147,37 +147,45 @@ const Auth = () => {
               </div>
             </div>
             <div className="flex justify-center">
-              <button  className="btn btn-primary rounded-xl w-1/4  text-white" onClick={handleLogin}>Login</button>
+              <button
+                className="w-[30%] h-[58px] bg-blue-500 rounded-2xl border text-white text-base border-blue-500"
+                onClick={handleLogin}
+              >
+                Sign In
+              </button>
             </div>
             <div className="flex justify-center pb-10">
-              <div className="text-gray-800"> Already have an account?</div>{" "}
-              <a
-                href=""
-                onClick={(e) => {
-                  e.preventDefault();
-                  setShowRegister(false);
-                }}
-                className="text-blue-900 text-bold pl-2"
-              >
-                {" "}
-                Sign Up
-              </a>
+              <div className="text-center">
+                <span className="text-gray-400 text-base font-medium font-['Inter']">
+                  Don’t have an account yet?{" "}
+                </span>
+                <span
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowRegister(false);
+                  }}
+                  className="text-blue-500 text-base font-medium font-['Inter'] cursor-pointer"
+                >
+                  Sign Up
+                </span>
+              </div>
             </div>
           </div>
         ) : (
-          <div className="justify-center m-auto ">
-            <div className="">
+          //SIGN up
+          <div className="justify-center m-auto h-screen ">
+            <div className="w-screem">
               <input
                 type="text"
                 placeholder="@Email"
-                name="username"
+                name="email"
                 onChange={handleChange}
-                id=""
-                value={username}
-                className="input input-bordered w-full max-w-xs flex justify-center m-auto"
+                id="email"
+                value={email}
+                className="input w-[100%]  input-bordered max-w-md flex justify-center m-auto"
               />
               {isEmailValid(email) && (
-                <p className="mt-2 text-pink-600 text-sm flex justify-center pr-20">
+                <p className="mt-2 text-pink-600 text-sm flex justify-center pr-[15%]">
                   Please enter a valid email address..
                 </p>
               )}
@@ -187,11 +195,11 @@ const Auth = () => {
               <input
                 type="text"
                 placeholder="@Your Name"
-                name="email"
+                name="username"
                 onChange={handleChange}
                 id=""
-                value={email}
-                className="input input-bordered w-full max-w-xs flex justify-center m-auto"
+                value={username}
+                className="input input-bordered w-full max-w-md flex justify-center m-auto"
               />
             </div>
 
@@ -203,12 +211,11 @@ const Auth = () => {
                 id=""
                 onChange={handleChange}
                 value={password}
-                className="input input-bordered w-full max-w-xs flex justify-center m-auto"
-                
+                className="input input-bordered w-full max-w-md flex justify-center m-auto"
               />
-              <Eye/>
+              <Eye />
             </div>
-            <div className="p-4 flex justify-center">
+            <div className="px-4 flex justify-center">
               <input type="checkbox" className="checkbox" disabled checked />
               <div className="pr-10 mr-2 text-gray-500 text-sm pl-2">
                 I agree to the Terms & Conditions
@@ -216,27 +223,29 @@ const Auth = () => {
             </div>
 
             <br />
-            <div className="flex justify-center pb-10">
+            <div className="flex justify-center pb-3">
               <button
-                className="btn btn-primary rounded-xl w-1/4  text-white"
+                className="w-[30%] h-[58px] bg-blue-500 rounded-2xl border text-white text-base border-blue-500"
                 onClick={handleRegister}
               >
-                Signup
+                Sign up
               </button>
             </div>
-            <div className="flex justify-center pb-10">
-              <div className="text-gray-800"> Already have an account?</div>{" "}
-              <a
-                href=""
-                onClick={(e) => {
-                  e.preventDefault();
-                  setShowRegister(true);
-                }}
-                className="text-blue-900 text-bold pl-2"
-              >
-                {" "}
-                Sign In
-              </a>
+            <div className="flex justify-center">
+              <div className="text-center">
+                <span className="text-gray-400 text-base font-medium font-['Inter']">
+                  Already have an account?{" "}
+                </span>
+                <span
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowRegister(true);
+                  }}
+                  className="text-blue-500 text-base font-medium font-['Inter'] cursor-pointer"
+                >
+                  Sign In
+                </span>
+              </div>
             </div>
           </div>
         )}

@@ -1,7 +1,7 @@
 const Orimg = () => {
   return (
     <svg
-      width="540"
+      width="440"
       height="24"
       viewBox="0 0 540 24"
       fill="none"

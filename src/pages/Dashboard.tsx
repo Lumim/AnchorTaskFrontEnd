@@ -7,12 +7,12 @@ import { toast } from "react-toastify";
 import Header from "../components/dashboard/Header";
 import Sidebar from "../components/dashboard/Sidebar";
 import DataTable from "../components/dashboard/DataTable";
-import {BrowserRouter,Routes,Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Users from "./userPage/Users";
-import Sales from "./userPage/Sales"
+import Sales from "./userPage/Sales";
 
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 import UserDashboard from "./userPage/UserDashboard";
 
 const Dashboard = () => {
@@ -26,13 +26,19 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="h-screen gap-1">
-      <div className="flex h-10">
-        <Sidebar />
-        <Header />
+    <div>
+      <div className=" flex">
+        <div className=" block h-10 ">
+          <Sidebar />
+        </div>
+        <div className="h-1/3  block">
+          <Header task={handleLogout} />
+        </div>
       </div>
-      
-      
+
+      <div className="ml-[22%] mt-10 block h-screen justify-center">
+        welcome to dashboard!!
+      </div>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import { createSlice,PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
-//import { stringify } from "querystring";
 import { json } from "stream/consumers";
 
 export interface AuthState{
